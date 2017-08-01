@@ -27,11 +27,15 @@
         <td><%= sale.time %></td>
         <td><%= sale.description %></td>
         <td><%= link_to 'Show', sale %></td>
-        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if @user.has_role? :admin %>
+          <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
+          <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>`
+        <% end %>
       </tr>
     <% end %>
   </tbody>
+
 </table>
 
 <br>
