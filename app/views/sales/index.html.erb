@@ -28,10 +28,14 @@
         <td><%= sale.description %></td>
         <td><%= link_to 'Show', sale %></td>
 
-        <% if @user.has_role? :admin %>
+
+
+<%# Amy added this next line: Only the admin can see edit and delete from home page %>
+
+<% if @ability.can? :manage, :all %>
           <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
           <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>`
-        <% end %>
+   <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +44,12 @@
 
 <br>
 
-<%= link_to 'New Sale', new_sale_path %>
+<% if @ability.can? :manage, Sale %>
+
+    <%= link_to 'New Sale', new_sale_path %>
+
+<% end %>
+
+
+
+
