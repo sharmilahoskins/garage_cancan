@@ -50,6 +50,6 @@
 
 <% end %>
 
-
-
-
+<% if @ability.can? :manage, :all %>
+  <a data-method="get" href="/admin/index">Admin Page</a>
+<% end %>
